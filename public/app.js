@@ -1,3 +1,4 @@
+const API_BASE_URL = 'https://mgnrega-tracker-production.up.railway.app';
 // Enhanced app functionality with API integration
 class MGNREGADashboard {
     constructor() {
@@ -33,7 +34,7 @@ class MGNREGADashboard {
 
     async loadStates() {
         try {
-            const response = await fetch('/api/states');
+            const response = await fetch(`${API_BASE_URL}/api/states`);
             if (!response.ok) throw new Error('Failed to load states');
             
             this.states = await response.json();
@@ -92,7 +93,7 @@ class MGNREGADashboard {
 
     async loadDistricts(stateCode) {
         try {
-            const response = await fetch(`/api/districts/${stateCode}`);
+            const response = await fetch(`${API_BASE_URL}/api/districts/${stateCode}`);
             if (!response.ok) throw new Error('Failed to load districts');
             
             this.districts = await response.json();
@@ -139,7 +140,7 @@ class MGNREGADashboard {
         dashboard.innerHTML = `<div class="loading">${this.translate('loading_data')}</div>`;
 
         try {
-            const response = await fetch(`/api/district-data/${districtCode}`);
+            const response = await fetch(`${API_BASE_URL}/api/district-data/${districtCode}`);
             if (!response.ok) throw new Error('Failed to fetch district data');
             
             const data = await response.json();
@@ -269,7 +270,7 @@ class MGNREGADashboard {
             
             try {
                 // Clear cache for this district
-                await fetch(`/api/clear-cache/${districtCode}`, { method: 'POST' });
+                await fetch(`${API_BASE_URL}/api/clear-cache/${districtCode}`, { method: 'POST' });
                 // Refetch data
                 await this.fetchDistrictData();
                 this.showSuccess(this.translate('data_refreshed'));
@@ -319,13 +320,14 @@ class MGNREGADashboard {
 
     async reverseGeocode(lat, lon) {
         try {
-            const response = await fetch('/api/reverse-geocode', {
+            const response = await fetch(`${API_BASE_URL}/api/reverse-geocode`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ latitude: lat, longitude: lon })
             });
+
 
             if (!response.ok) throw new Error('Reverse geocoding failed');
 
