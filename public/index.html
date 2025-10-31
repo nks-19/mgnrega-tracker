@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हमारी आवाज़, हमारे अधिकार - MGNREGA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <option value="hi">हिन्दी</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+            <h1 id="appTitle">हमारी आवाज़, हमारे अधिकार</h1>
+            <p id="appSubtitle">MGNREGA जिला प्रदर्शन डैशबोर्ड</p>
+        </div>
+        
+        <div class="district-selector">
+            <h2 id="selectDistrictTitle">अपना जिला चुनें</h2>
+            <div class="selector-group">
+                <label id="stateLabel">राज्य चुनें</label>
+                <select id="stateSelect">
+                    <option value="">राज्य चुनें</option>
+                </select>
+            </div>
+            <div class="selector-group">
+                <label id="districtLabel">जिला चुनें</label>
+                <select id="districtSelect" disabled>
+                    <option value="">जिला चुनें</option>
+                </select>
+            </div>
+            <div class="button-group">
+                <button id="fetchData" disabled>डेटा देखें</button>
+                <button id="useLocation">मेरा स्थान इस्तेमाल करें</button>
+            </div>
+        </div>
+        
+        <div id="dashboard" class="dashboard" style="display: none;">
+            <!-- Dashboard content will be loaded here -->
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
